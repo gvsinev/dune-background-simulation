@@ -1,0 +1,202 @@
+#include "services_dune.fcl"
+#include "opticaldetectormodules_dune.fcl"
+#include "opticaldetectorservices_dune.fcl"
+#include "anatreemodule.fcl"
+
+process_name: OpReco
+
+services:
+{
+  # Load the service that manages root files for histograms.
+  TFileService:          { fileName: "reco_hist.root" }
+  TimeTracker:           {                            }
+  SimpleMemoryCheck:     { ignoreTotal: 1             } # Default is one
+  RandomNumberGenerator: {                            } # ART native random number generator
+  FileCatalogMetadata:   @local::art_file_catalog_mc
+                         @table::dunefd_services
+}
+
+# Source is now a root file
+source:
+{
+  module_type: RootInput
+  maxEvents:   1000      # Number of events to create
+  # Specify from command line with -s or --source
+   
+}
+
+
+# Define and configure some modules to do work on each event.
+# First modules are defined; they are scheduled later.
+# Modules are grouped by type.
+physics:
+{
+   
+   producers:
+   {
+      opflash2:    @local::dunefd_opflash
+      opflash3:    @local::dunefd_opflash
+      opflash4:    @local::dunefd_opflash
+      opflash5:    @local::dunefd_opflash
+      opflash7:    @local::dunefd_opflash
+      opflash10:   @local::dunefd_opflash
+      rns:       { module_type: "RandomNumberSaver" }
+   }
+
+   analyzers:
+   {
+      #pmtresponse:  @local::dunefd_simphotoncounter
+      #opdigiana:    @local::dunefd_opdigiana
+      opflashana2:  @local::dunefd_opflashana
+      opflashana3:  @local::dunefd_opflashana
+      opflashana4:  @local::dunefd_opflashana
+      opflashana5:  @local::dunefd_opflashana
+      opflashana7:  @local::dunefd_opflashana
+      opflashana10: @local::dunefd_opflashana
+      anatree:      @local::anatree_anatree
+#      anatree3:     @local::anatree_anatree
+#      anatree4:     @local::anatree_anatree
+#      anatree5:     @local::anatree_anatree
+#      anatree7:     @local::anatree_anatree
+#      anatree10:    @local::anatree_anatree
+   }
+   
+   
+   # Define the producer and filter modules for this path, order matters, 
+   # filters reject all following items. See lines starting physics.producers below
+   simulate:      [ opflash2, opflash3, opflash4, opflash5, opflash7, opflash10, rns ] 
+#   analyzeIt:     [ opflashana2, anatree2, opflashana3, anatree3, opflashana4,  anatree4, 
+#                    opflashana5, anatree5, opflashana7, anatree7, opflashana10, anatree10 ]
+   analyzeIt:     [ opflashana2, opflashana3, opflashana4, opflashana5, opflashana7, opflashana10, anatree ]
+   
+   # Define the output stream, there could be more than one if using filters 
+   stream1:       [ out1               ]
+   
+   # trigger_paths is a keyword and contains the paths that modify the art::event, 
+   # ie filters and producers
+   trigger_paths: [ simulate           ] 
+   
+   # end_paths is a keyword and contains the paths that do not modify the art::Event, 
+   # ie analyzers and output streams.  these all run simultaneously
+   end_paths:     [ analyzeIt, stream1 ]  
+}
+
+# Block to define where the output goes. If you defined a filter in the physics
+# block and put it in the trigger_paths then you need to put a SelectEvents: {SelectEvents: [XXX]}
+# entry in the output stream you want those to go to, where XXX is the label of the filter module(s)
+outputs:
+{
+   out1:
+   {
+      module_type:      RootOutput
+      fileName:        "reco_gen.root"
+      # Default file name, can override from command line with -o or --output
+      dataTier:        "optical-reconstructed"
+      compressionLevel: 1
+   }
+}
+
+services.Geometry: @local::dune10kt_workspace_geo
+
+physics.producers.opflash2.FlashThreshold:           1.2 # 2 PE threshold
+
+physics.analyzers.opflashana2.OpFlashModuleLabel:    "opflash2"
+physics.analyzers.opflashana2.OpHitModuleLabel:      "opflash2"
+physics.analyzers.opflashana2.MakePerEventFlashTree:  true
+
+physics.analyzers.anatree.HitsModuleLabel:           ""
+physics.analyzers.anatree.TrigModuleLabel:           ""
+physics.analyzers.anatree.TrackModuleLabel:          ""
+physics.analyzers.anatree.TrkSpptAssocModuleLabel:   ""
+physics.analyzers.anatree.HitSpptAssocModuleLabel:   ""
+physics.analyzers.anatree.ClusterModuleLabel:        ""
+physics.analyzers.anatree.CalorimetryModuleLabel:    ""
+physics.analyzers.anatree.SimulationModuleLabel:     "largeant"
+physics.analyzers.anatree.MCTruthT0ModuleLabel:      ""
+physics.analyzers.anatree.FlashModuleLabel:          ""
+#physics.analyzers.anatree2.FlashModuleLabel:         "opflash2"
+
+physics.producers.opflash3.FlashThreshold:           2.0 # 3 PE threshold
+
+physics.analyzers.opflashana3.OpFlashModuleLabel:    "opflash3"
+physics.analyzers.opflashana3.OpHitModuleLabel:      "opflash3"
+physics.analyzers.opflashana3.MakePerEventFlashTree:  true
+
+#physics.analyzers.anatree3.HitsModuleLabel:          ""
+#physics.analyzers.anatree3.TrigModuleLabel:          ""
+#physics.analyzers.anatree3.TrackModuleLabel:         ""
+#physics.analyzers.anatree3.TrkSpptAssocModuleLabel:  ""
+#physics.analyzers.anatree3.HitSpptAssocModuleLabel:  ""
+#physics.analyzers.anatree3.ClusterModuleLabel:       ""
+#physics.analyzers.anatree3.CalorimetryModuleLabel:   ""
+#physics.analyzers.anatree3.SimulationModuleLabel:    "largeant"
+#physics.analyzers.anatree3.MCTruthT0ModuleLabel:     ""
+#physics.analyzers.anatree3.FlashModuleLabel:         "opflash3"
+
+physics.producers.opflash4.FlashThreshold:           2.8 # 4 PE threshold
+
+physics.analyzers.opflashana4.OpFlashModuleLabel:    "opflash4"
+physics.analyzers.opflashana4.OpHitModuleLabel:      "opflash4"
+physics.analyzers.opflashana4.MakePerEventFlashTree:  true
+
+#physics.analyzers.anatree4.HitsModuleLabel:          ""
+#physics.analyzers.anatree4.TrigModuleLabel:          ""
+#physics.analyzers.anatree4.TrackModuleLabel:         ""
+#physics.analyzers.anatree4.TrkSpptAssocModuleLabel:  ""
+#physics.analyzers.anatree4.HitSpptAssocModuleLabel:  ""
+#physics.analyzers.anatree4.ClusterModuleLabel:       ""
+#physics.analyzers.anatree4.CalorimetryModuleLabel:   ""
+#physics.analyzers.anatree4.SimulationModuleLabel:    "largeant"
+#physics.analyzers.anatree4.MCTruthT0ModuleLabel:     ""
+#physics.analyzers.anatree4.FlashModuleLabel:         "opflash4"
+
+physics.producers.opflash5.FlashThreshold:           3.7 # 5 PE threshold
+
+physics.analyzers.opflashana5.OpFlashModuleLabel:    "opflash5"
+physics.analyzers.opflashana5.OpHitModuleLabel:      "opflash5"
+physics.analyzers.opflashana5.MakePerEventFlashTree:  true
+
+#physics.analyzers.anatree5.HitsModuleLabel:          ""
+#physics.analyzers.anatree5.TrigModuleLabel:          ""
+#physics.analyzers.anatree5.TrackModuleLabel:         ""
+#physics.analyzers.anatree5.TrkSpptAssocModuleLabel:  ""
+#physics.analyzers.anatree5.HitSpptAssocModuleLabel:  ""
+#physics.analyzers.anatree5.ClusterModuleLabel:       ""
+#physics.analyzers.anatree5.CalorimetryModuleLabel:   ""
+#physics.analyzers.anatree5.SimulationModuleLabel:    "largeant"
+#physics.analyzers.anatree5.MCTruthT0ModuleLabel:     ""
+#physics.analyzers.anatree5.FlashModuleLabel:         "opflash5"
+
+physics.producers.opflash7.FlashThreshold:           5.4 # 7 PE threshold
+
+physics.analyzers.opflashana7.OpFlashModuleLabel:    "opflash7"
+physics.analyzers.opflashana7.OpHitModuleLabel:      "opflash7"
+physics.analyzers.opflashana7.MakePerEventFlashTree:  true
+
+#physics.analyzers.anatree7.HitsModuleLabel:          ""
+#physics.analyzers.anatree7.TrigModuleLabel:          ""
+#physics.analyzers.anatree7.TrackModuleLabel:         ""
+#physics.analyzers.anatree7.TrkSpptAssocModuleLabel:  ""
+#physics.analyzers.anatree7.HitSpptAssocModuleLabel:  ""
+#physics.analyzers.anatree7.ClusterModuleLabel:       ""
+#physics.analyzers.anatree7.CalorimetryModuleLabel:   ""
+#physics.analyzers.anatree7.SimulationModuleLabel:    "largeant"
+#physics.analyzers.anatree7.MCTruthT0ModuleLabel:     ""
+#physics.analyzers.anatree7.FlashModuleLabel:         "opflash7"
+
+physics.producers.opflash10.FlashThreshold:          7.9 # 10 PE threshold
+
+physics.analyzers.opflashana10.OpFlashModuleLabel:   "opflash10"
+physics.analyzers.opflashana10.OpHitModuleLabel:     "opflash10"
+physics.analyzers.opflashana10.MakePerEventFlashTree: true
+
+#physics.analyzers.anatree10.HitsModuleLabel:         ""
+#physics.analyzers.anatree10.TrigModuleLabel:         ""
+#physics.analyzers.anatree10.TrackModuleLabel:        ""
+#physics.analyzers.anatree10.TrkSpptAssocModuleLabel: ""
+#physics.analyzers.anatree10.HitSpptAssocModuleLabel: ""
+#physics.analyzers.anatree10.ClusterModuleLabel:      ""
+#physics.analyzers.anatree10.CalorimetryModuleLabel:  ""
+#physics.analyzers.anatree10.SimulationModuleLabel:   "largeant"
+#physics.analyzers.anatree10.MCTruthT0ModuleLabel:    ""
+#physics.analyzers.anatree10.FlashModuleLabel:        "opflash10"
