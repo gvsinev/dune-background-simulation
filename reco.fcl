@@ -34,6 +34,7 @@ physics:
    
    producers:
    {
+      ophit:       @local::dunefd_ophit
       opflash2:    @local::dunefd_opflash
       opflash3:    @local::dunefd_opflash
       opflash4:    @local::dunefd_opflash
@@ -64,7 +65,7 @@ physics:
    
    # Define the producer and filter modules for this path, order matters, 
    # filters reject all following items. See lines starting physics.producers below
-   simulate:      [ opflash2, opflash3, opflash4, opflash5, opflash7, opflash10, rns ] 
+   simulate:      [ ophit, opflash2, opflash3, opflash4, opflash5, opflash7, opflash10, rns ] 
 #   analyzeIt:     [ opflashana2, anatree2, opflashana3, anatree3, opflashana4,  anatree4, 
 #                    opflashana5, anatree5, opflashana7, anatree7, opflashana10, anatree10 ]
    analyzeIt:     [ opflashana2, opflashana3, opflashana4, opflashana5, opflashana7, opflashana10, anatree ]
@@ -101,7 +102,6 @@ services.Geometry: @local::dune10kt_workspace_geo
 physics.producers.opflash2.FlashThreshold:           1.2 # 2 PE threshold
 
 physics.analyzers.opflashana2.OpFlashModuleLabel:    "opflash2"
-physics.analyzers.opflashana2.OpHitModuleLabel:      "opflash2"
 physics.analyzers.opflashana2.MakePerEventFlashTree:  true
 
 physics.analyzers.anatree.HitsModuleLabel:           ""
@@ -119,7 +119,6 @@ physics.analyzers.anatree.FlashModuleLabel:          ""
 physics.producers.opflash3.FlashThreshold:           2.0 # 3 PE threshold
 
 physics.analyzers.opflashana3.OpFlashModuleLabel:    "opflash3"
-physics.analyzers.opflashana3.OpHitModuleLabel:      "opflash3"
 physics.analyzers.opflashana3.MakePerEventFlashTree:  true
 
 #physics.analyzers.anatree3.HitsModuleLabel:          ""
@@ -136,7 +135,6 @@ physics.analyzers.opflashana3.MakePerEventFlashTree:  true
 physics.producers.opflash4.FlashThreshold:           2.8 # 4 PE threshold
 
 physics.analyzers.opflashana4.OpFlashModuleLabel:    "opflash4"
-physics.analyzers.opflashana4.OpHitModuleLabel:      "opflash4"
 physics.analyzers.opflashana4.MakePerEventFlashTree:  true
 
 #physics.analyzers.anatree4.HitsModuleLabel:          ""
@@ -153,7 +151,6 @@ physics.analyzers.opflashana4.MakePerEventFlashTree:  true
 physics.producers.opflash5.FlashThreshold:           3.7 # 5 PE threshold
 
 physics.analyzers.opflashana5.OpFlashModuleLabel:    "opflash5"
-physics.analyzers.opflashana5.OpHitModuleLabel:      "opflash5"
 physics.analyzers.opflashana5.MakePerEventFlashTree:  true
 
 #physics.analyzers.anatree5.HitsModuleLabel:          ""
@@ -170,7 +167,6 @@ physics.analyzers.opflashana5.MakePerEventFlashTree:  true
 physics.producers.opflash7.FlashThreshold:           5.4 # 7 PE threshold
 
 physics.analyzers.opflashana7.OpFlashModuleLabel:    "opflash7"
-physics.analyzers.opflashana7.OpHitModuleLabel:      "opflash7"
 physics.analyzers.opflashana7.MakePerEventFlashTree:  true
 
 #physics.analyzers.anatree7.HitsModuleLabel:          ""
@@ -187,7 +183,6 @@ physics.analyzers.opflashana7.MakePerEventFlashTree:  true
 physics.producers.opflash10.FlashThreshold:          7.9 # 10 PE threshold
 
 physics.analyzers.opflashana10.OpFlashModuleLabel:   "opflash10"
-physics.analyzers.opflashana10.OpHitModuleLabel:     "opflash10"
 physics.analyzers.opflashana10.MakePerEventFlashTree: true
 
 #physics.analyzers.anatree10.HitsModuleLabel:         ""
