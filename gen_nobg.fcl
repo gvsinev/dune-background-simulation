@@ -74,10 +74,10 @@ physics.producers.generator.PDG:               [  11     ,  11     ,  11     ,  
 physics.producers.generator.P0:                [   0.0083,   0.0167,   0.333 ,   0.833 ]  # Divided by 0.6
 physics.producers.generator.X0:                [   0.0   ,   0.0   ,   0.0   ,   0.0   ]
 physics.producers.generator.Y0:                [   0.0   ,   0.0   ,   0.0   ,   0.0   ]
-physics.producers.generator.Z0:                [ 231.514 , 231.514 , 231.514 , 231.514 ]
+physics.producers.generator.Z0:                [ 696.292 , 696.292 , 696.292 , 696.292 ]
 physics.producers.generator.SigmaX:            [ 363.376 , 363.376 , 363.376 , 363.376 ]
 physics.producers.generator.SigmaY:            [ 607.829 , 607.829 , 607.829 , 607.829 ]
-physics.producers.generator.SigmaZ:            [ 232.39  , 232.39  , 232.39  , 232.39  ]
+physics.producers.generator.SigmaZ:            [ 697.168 , 697.168 , 697.168 , 697.168 ]
 physics.producers.generator.PosDist:               0
 physics.producers.generator.Theta0XZ:          [ 180.0   , 180.0   , 180.0   , 180.0   ]
 physics.producers.generator.Theta0YZ:          [   0.0   ,   0.0   ,   0.0   ,   0.0   ]
@@ -85,4 +85,4 @@ physics.producers.generator.SigmaThetaXZ:      [ 180.0   , 180.0   , 180.0   , 1
 physics.producers.generator.SigmaThetaYZ:      [  90.0   ,  90.0   ,  90.0   ,  90.0   ]
 physics.producers.generator.AngleDist:             0
 
-services.Geometry: @local::dune10kt_workspace_geo
+services.Geometry: @local::dune10kt_1x2x6_geo

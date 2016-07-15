@@ -64,8 +64,8 @@ outputs:
  }
 }
 
-services.Geometry:                @local::dune10kt_workspace_geo
-services.PhotonVisibilityService: @local::dune10kt_workspace_photonvisibilityservice
+services.Geometry:                @local::dune10kt_1x2x6_geo
+services.PhotonVisibilityService: @local::dune10kt_1x2x6_photonvisibilityservice
 
 services.LArG4Parameters.UseCustomPhysics: true
 services.LArG4Parameters.EnabledPhysics: [ "Em",
