@@ -1,7 +1,7 @@
 #include "services_dune.fcl"
 #include "opticaldetectormodules_dune.fcl"
 #include "opticaldetectorservices_dune.fcl"
-#include "anatreemodule.fcl"
+#include "AnalysisTree.fcl"
 
 process_name: OpReco
 
@@ -58,7 +58,7 @@ physics:
       opflashana8:  @local::dunefd_opflashana
       opflashana9:  @local::dunefd_opflashana
       opflashana10: @local::dunefd_opflashana
-      anatree:      @local::anatree_anatree
+      anatree:      @local::dune10kt_analysistree
    }
    
    
@@ -141,13 +141,5 @@ physics.producers.opflash10.FlashThreshold:          9.5 # 10 PE threshold
 physics.analyzers.opflashana10.OpFlashModuleLabel:   "opflash10"
 physics.analyzers.opflashana10.MakePerEventFlashTree: true
 
-physics.analyzers.anatree.HitsModuleLabel:           ""
-physics.analyzers.anatree.TrigModuleLabel:           ""
-physics.analyzers.anatree.TrackModuleLabel:          ""
-physics.analyzers.anatree.TrkSpptAssocModuleLabel:   ""
-physics.analyzers.anatree.HitSpptAssocModuleLabel:   ""
-physics.analyzers.anatree.ClusterModuleLabel:        ""
-physics.analyzers.anatree.CalorimetryModuleLabel:    ""
-physics.analyzers.anatree.SimulationModuleLabel:     "largeant"
-physics.analyzers.anatree.MCTruthT0ModuleLabel:      ""
-physics.analyzers.anatree.FlashModuleLabel:          ""
+physics.analyzers.anatree.LArGeantModuleLabel:       "largeant"
+physics.analyzers.anatree.OpFlashModuleLabel:        ""
