@@ -7,9 +7,9 @@ sim_cluster=$1   # Label of the simulation files to process
 sim_process="$2" # "all" (all files with the sim_cluster -- don't forget to quote the asterisk!) or XX (a digit or several) is expected
 option=$3        # "nobg", "ar39", or "rn222"
 
-clientargs="--group=dune --role=Analysis --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC --OS=SL6"
+clientargs="--group=dune --role=Analysis --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC --OS=SL6 --expected-lifetime='long' --memory=2GB"
 
-dir=/pnfs/lbne/scratch/users/gvsinev/photon_detectors/efficiency/dune4apa_${option} # PNFS Scratch directory
+dir=/pnfs/dune/scratch/users/gvsinev/photon_detectors/efficiency/dune4apa_${option} # PNFS Scratch directory
 
 reco_fcl=$PWD/reco.fcl
 fileargs="-f $reco_fcl"
