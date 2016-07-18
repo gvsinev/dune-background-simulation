@@ -141,5 +141,23 @@ physics.producers.opflash10.FlashThreshold:          9.5 # 10 PE threshold
 physics.analyzers.opflashana10.OpFlashModuleLabel:   "opflash10"
 physics.analyzers.opflashana10.MakePerEventFlashTree: true
 
-physics.analyzers.anatree.LArGeantModuleLabel:       "largeant"
-physics.analyzers.anatree.OpFlashModuleLabel:        ""
+physics.analyzers.anatree.LArGeantModuleLabel: "largeant"
+
+physics.analyzers.anatree.UseBuffers:              false
+physics.analyzers.anatree.IgnoreMissingShowers:    false
+physics.analyzers.anatree.SaveAuxDetInfo:          false
+physics.analyzers.anatree.SaveCryInfo:             false
+physics.analyzers.anatree.SaveGenieInfo:           false
+physics.analyzers.anatree.SaveGeantInfo:           true
+physics.analyzers.anatree.SaveMCShowerInfo:        false
+physics.analyzers.anatree.SaveMCTrackInfo:         false
+physics.analyzers.anatree.SaveHitInfo:             false
+physics.analyzers.anatree.SaveRawDigitInfo:        false
+physics.analyzers.anatree.SaveTrackInfo:           false
+physics.analyzers.anatree.SaveVertexInfo:          false
+physics.analyzers.anatree.SavePandoraNuVertexInfo: false
+physics.analyzers.anatree.SaveClusterInfo:         false
+physics.analyzers.anatree.SaveFlashInfo:           false
+physics.analyzers.anatree.SaveExternCounterInfo:   false
+physics.analyzers.anatree.SaveShowerInfo:          false
+physics.analyzers.anatree.SaveCaloCosmics:         false

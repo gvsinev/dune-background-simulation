@@ -7,7 +7,7 @@ njobs=$1
 nevents=$2
 option=$3 # "nobg", "ar39", or "rn222"
 
-clientargs="--group=dune --role=Analysis --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC --OS=SL6 --expected-lifetime='long' --memory=2GB"
+clientargs="--group=dune --role=Analysis --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC --OS=SL6 --expected-lifetime='medium' --memory=2GB"
 
 gen_fcl=$PWD/gen_${option}.fcl
 g4_fcl=$PWD/g4.fcl
