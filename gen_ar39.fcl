@@ -34,7 +34,7 @@ physics:
  producers:
  {
    generator: @local::dunefd_singlep
-   radiogen:  @local::dune_1x2x6_radiogen
+   radiogen:  @local::dunefd_1x2x6_ar39
    rns:       { module_type: "RandomNumberSaver" }
  }
 
