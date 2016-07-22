@@ -44,6 +44,8 @@ physics:
       opflash8:    @local::dunefd_opflash
       opflash9:    @local::dunefd_opflash
       opflash10:   @local::dunefd_opflash
+      opflash15:   @local::dunefd_opflash
+      opflash20:   @local::dunefd_opflash
       rns:       { module_type: "RandomNumberSaver" }
    }
 
@@ -58,14 +60,16 @@ physics:
       opflashana8:  @local::dunefd_opflashana
       opflashana9:  @local::dunefd_opflashana
       opflashana10: @local::dunefd_opflashana
+      opflashana15: @local::dunefd_opflashana
+      opflashana20: @local::dunefd_opflashana
       anatree:      @local::dune10kt_analysistree
    }
    
    
    # Define the producer and filter modules for this path, order matters, 
    # filters reject all following items. See lines starting physics.producers below
-   simulate:      [ ophit, opflash2, opflash3, opflash4, opflash5, opflash6, opflash7, opflash8, opflash9, opflash10, rns ] 
-   analyzeIt:     [ opflashana2, opflashana3, opflashana4, opflashana5, opflashana6, opflashana7, opflashana8, opflashana9, opflashana10, anatree ]
+   simulate:      [ ophit, opflash2, opflash3, opflash4, opflash5, opflash6, opflash7, opflash8, opflash9, opflash10, opflash15, opflash20, rns ] 
+   analyzeIt:     [ opflashana2, opflashana3, opflashana4, opflashana5, opflashana6, opflashana7, opflashana8, opflashana9, opflashana10, opflashana15, opflashana20, anatree ]
    
    # Define the output stream, there could be more than one if using filters 
    stream1:       [ out1               ]
