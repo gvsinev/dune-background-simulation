@@ -141,6 +141,16 @@ physics.producers.opflash10.FlashThreshold:          9.5 # 10 PE threshold
 physics.analyzers.opflashana10.OpFlashModuleLabel:   "opflash10"
 physics.analyzers.opflashana10.MakePerEventFlashTree: true
 
+physics.producers.opflash15.FlashThreshold:         14.5 # 15 PE threshold
+
+physics.analyzers.opflashana15.OpFlashModuleLabel:   "opflash15"
+physics.analyzers.opflashana15.MakePerEventFlashTree: true
+
+physics.producers.opflash20.FlashThreshold:         19.5 # 20 PE threshold
+
+physics.analyzers.opflashana20.OpFlashModuleLabel:   "opflash20"
+physics.analyzers.opflashana20.MakePerEventFlashTree: true
+
 physics.analyzers.anatree.LArGeantModuleLabel: "largeant"
 
 physics.analyzers.anatree.UseBuffers:              false
