@@ -15,7 +15,7 @@ digi_fcl=$PWD/digi.fcl
 reco_fcl=$PWD/reco.fcl
 fileargs="-f $gen_fcl -f $g4_fcl -f $digi_fcl -f $reco_fcl"
 
-outdir=/pnfs/dune/scratch/users/gvsinev/photon_detectors/efficiency/dune4apa_${option} # PNFS Scratch directory
+outdir=/pnfs/dune/scratch/users/gvsinev/photon_detectors/efficiency/dune1x2x6_${option} # PNFS Scratch directory
 outputargs="-dROOT $outdir/root -dFCL $outdir/fcl -dLOG $outdir/log"
 
 larsoft="$MRB_TOP $MRB_PROJECT $MRB_PROJECT_VERSION $MRB_QUALS"
